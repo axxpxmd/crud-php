@@ -27,6 +27,20 @@ include_once 'koneksi.php';
                             </div>
                         </div>
                     </form>
+
+                    <form action="index.php" method="get">
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <select name="sort" class="form-control">
+                                    <option value="asc">asc</option>
+                                    <option value="desc">desc</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-success" value="sort">Cari</button>
+                            </div>
+                        </div>
+                    </form>
                     <a href="tambah.php" class="btn btn-sm btn-success mb-2"><i class="bi bi-plus me-2"></i>TAMBAH</a>
                     <table class="table table-bordered table-striped">
                         <thead>
@@ -43,7 +57,16 @@ include_once 'koneksi.php';
                             if(isset($_GET['cari'])){
                                 $cari = $_GET['cari'];
                                 $q = "SELECT * FROM mahasiswa WHERE nama LIKE '%".$cari."%'";			
-                            }else{
+                            }else if(isset($_GET['sort'])){
+                                $sort = $_GET['sort'];
+
+                                if ($sort == 'asc') {
+                                    $q = "SELECT * FROM mahasiswa ORDER BY nama ASC";
+                                }else{
+                                    $q = "SELECT * FROM mahasiswa ORDER BY nama DESC";
+                                }
+                            }
+                            else{
                                 $q = "SELECT * FROM mahasiswa";		
                             }
 
