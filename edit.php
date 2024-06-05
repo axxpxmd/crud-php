@@ -12,10 +12,10 @@ include_once 'koneksi.php';
     <h3>Edit Data Mahasiswa</h3>
     <br>
     <?php
-    $id = $_GET['id'];
-    $data = "SELECT * FROM mahasiswa WHERE id = $id";
-    $result = mysqli_query($koneksi, $data);
-    $row = mysqli_fetch_assoc($result);
+        $id = $_GET['id'];
+        $data = "SELECT * FROM mahasiswa WHERE id = $id";
+        $result = mysqli_query($koneksi, $data);
+        $row = mysqli_fetch_assoc($result);
     ?>
     <form action="edit.php?id=<?= $row['id'] ?>" method="POST">
         <label>Nama Mahasiswa</label>
