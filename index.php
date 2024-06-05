@@ -1,7 +1,6 @@
 <?php
 include_once 'koneksi.php';
 ?>
-
 <!doctype html>
 <html lang="en">
     <head>
@@ -15,11 +14,21 @@ include_once 'koneksi.php';
     </head>
     <body>
         <div class="container col-md-6 mt-5">
-            <div class="card">
+            <div class="card">  
                 <div class="card-header text-black fw-bold">DATA SISWA</div>
                 <div class="card-body">
-                    <a href="tambah.php" class="btn btn-sm btn-success mb-2"><i class="bi bi-plus me-2"></i>Tambah Mahasiswa</a>
-                    <table class="table table-bordered">
+                    <form action="index.php" method="get">
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" placeholder="ketikan nama" name="cari">
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-success" value="Cari">Cari</button>
+                            </div>
+                        </div>
+                    </form>
+                    <a href="tambah.php" class="btn btn-sm btn-success mb-2"><i class="bi bi-plus me-2"></i>TAMBAH</a>
+                    <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -31,7 +40,13 @@ include_once 'koneksi.php';
                         </thead>
                         <tbody>
                         <?php
-                            $q = "SELECT * FROM mahasiswa";
+                            if(isset($_GET['cari'])){
+                                $cari = $_GET['cari'];
+                                $q = "SELECT * FROM mahasiswa WHERE nama LIKE '%".$cari."%'";			
+                            }else{
+                                $q = "SELECT * FROM mahasiswa";		
+                            }
+
                             $result = mysqli_query($koneksi, $q);
                             while ($row = mysqli_fetch_assoc($result)) {
                                 ?>
