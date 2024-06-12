@@ -11,6 +11,7 @@ include_once 'koneksi.php';
         <!-- Style -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" />
     </head>
     <body>
         <div class="container col-md-6 mt-5">
@@ -22,7 +23,7 @@ include_once 'koneksi.php';
                             <div class="col-md-6">
                                 <input type="text" class="form-control" placeholder="ketikan nama" name="cari">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6">  
                                 <button type="submit" class="btn btn-success" value="Cari">Cari</button>
                             </div>
                         </div>
@@ -42,7 +43,7 @@ include_once 'koneksi.php';
                         </div>
                     </form>
                     <a href="tambah.php" class="btn btn-sm btn-success mb-2"><i class="bi bi-plus me-2"></i>TAMBAH</a>
-                    <table class="table table-bordered table-striped">
+                    <table id="myTable" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -74,9 +75,9 @@ include_once 'koneksi.php';
                             while ($row = mysqli_fetch_assoc($result)) {
                                 ?>
                                 <tr>
-                                    <td><?= $row['id'] ?></td>
+                                    <td class="text-center"><?= $row['id'] ?></td>
                                     <td><?= $row['nama'] ?></td>
-                                    <td><?= $row['nim'] ?></td>
+                                    <td class="text-start"><?= $row['nim'] ?></td>
                                     <td><?= $row['kelamin'] ?></td>
                                     <td class="text-center">
                                         <a href="edit.php?id=<?= $row['id'] ?>" class="btn btn-sm btn-primary"><i class="bi bi-pencil me-2"></i>EDIT</a>
@@ -91,6 +92,14 @@ include_once 'koneksi.php';
                 </div>
             </div>
         </div>
+        <!-- Script -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     </body>
+    <script>
+        $(document).ready( function () {
+            $('#myTable').DataTable();
+        } );
+    </script>
 </html>
