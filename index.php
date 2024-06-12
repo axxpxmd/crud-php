@@ -18,32 +18,8 @@ include_once 'koneksi.php';
             <div class="card">  
                 <div class="card-header text-black fw-bold">DATA SISWA</div>
                 <div class="card-body">
-                    <form action="index.php" method="get">
-                        <div class="row mb-2">
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="ketikan nama" name="cari">
-                            </div>
-                            <div class="col-md-6">  
-                                <button type="submit" class="btn btn-success" value="Cari">Cari</button>
-                            </div>
-                        </div>
-                    </form>
-
-                    <form action="index.php" method="get">
-                        <div class="row mb-2">
-                            <div class="col-md-6">
-                                <select name="sort" class="form-control">
-                                    <option value="asc">asc</option>
-                                    <option value="desc">desc</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <button type="submit" class="btn btn-success" value="sort">Cari</button>
-                            </div>
-                        </div>
-                    </form>
                     <a href="tambah.php" class="btn btn-sm btn-success mb-2"><i class="bi bi-plus me-2"></i>TAMBAH</a>
-                    <table id="myTable" class="table table-bordered table-striped">
+                    <table class="table myTable table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -99,7 +75,7 @@ include_once 'koneksi.php';
     </body>
     <script>
         $(document).ready( function () {
-            $('#myTable').DataTable();
+            $('.myTable').DataTable();
         } );
     </script>
 </html>
